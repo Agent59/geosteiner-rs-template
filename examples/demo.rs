@@ -1,4 +1,4 @@
-use geosteiner_rust_api::{
+use geosteiner_rs_api::{
     rs_gst_open_geosteiner,
     rs_gst_close_geosteiner,
     //gst_esmt,
