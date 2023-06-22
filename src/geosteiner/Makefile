@@ -426,7 +426,6 @@ efst : $(EFST_OBJECTS) $(MEMORY) libgeosteiner.la
 
 fst2graph : $(FST2GRAPH_OBJECTS) $(MEMORY) libgeosteiner.la
 	$(CC) $(CFLAGS) -o fst2graph $(FST2GRAPH_OBJECTS) $(GEOLIB)
-
 geosteiner.h : parmdefs.h errordefs.h functions.in docgen
 	./docgen -h <functions.in >geosteiner.h
 
