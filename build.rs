@@ -25,7 +25,7 @@ fn rebuild_c_libs() {
     Command::new("make")
         .arg("-C")
         .arg(format!("{}", GEOSTEINER_C_PATH))
-        .arg("api_for_rust")
+        .arg("libgeosteiner.la")
         .output()
         .expect("make command in path {GEOSTEINER_C_PATH} should have succeeded"); 
 }
