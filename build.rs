@@ -39,6 +39,5 @@ fn main() {
 
     // Links the C library to Rust
     println!("cargo:rustc-link-search=dependency=src/geosteiner");
-    //println!("cargo:rustc-link-lib=dylib=api_for_rust");
     println!("cargo:rustc-link-lib=dylib=geosteiner");
    }
