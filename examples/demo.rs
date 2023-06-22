@@ -7,7 +7,7 @@ use geosteiner_rust_api::{
 fn main() {
     println!("test");
 
-    if rs_gst_open_geosteiner() != 0 {
+    if rs_gst_open_geosteiner() == 0 {
         println!("opened geosteiner");
 
         let terms = [0, 0, 0, 1, 1, 0, 1, 1];
