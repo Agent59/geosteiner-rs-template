@@ -387,7 +387,10 @@ ALL_OBJECTS = \
 	$(LIB_OBJECTS:.lo=.o) \
 	$(PROGRAM_SRC:.c=.o) \
 	$(PROGRAM_AUX_SRC:.c=.o) \
-	ledamain.o
+	ledamain.o \
+	$(RS_API_OBJECT) \
+	$(RS_API_OBJECT:.lo=.o) \
+	$(LP_SOLVE_OBJECTS)
 
 ANALYZE_CKPT_OBJECTS	= analyze.o analyze_ckpt.o
 BB_OBJECTS		= bbmain.o genps.o
