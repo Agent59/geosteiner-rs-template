@@ -33,7 +33,6 @@ rfst
 smt
 ufst
 config.log
-config.status
 configure
 configure~
 autom4te.cache
