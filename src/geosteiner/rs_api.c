@@ -23,14 +23,6 @@ struct C_ESMT rs_compute_esmt (int nterms, double * terms)
     /* Compute Euclidean Steiner tree */
     gst_esmt (nterms, terms, &length, &nsps, sps, &nedges, edges, NULL, NULL);
 
-    for (i = 0; i < nsps; i++) {
-        printf ("Steiner point: (%f, %f)\n", sps[2*i], sps[2*i+1]);
-    }
-
-    for (i = 0; i < nedges; i++) {
-        printf ("Edge: (%i, %i)\n", edges[2*i], edges[2*i+1]);
-    }
-
     /* Close GeoSteiner environment */
     gst_close_geosteiner ();
 
