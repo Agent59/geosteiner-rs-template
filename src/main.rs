@@ -1,4 +1,4 @@
-use geosteiner_rs_api::{
+use geosteiner_rs_template::geosteiner::{
     rs_safe_compute_esmt,
     Point,
 };
