@@ -182,7 +182,9 @@ TARGETS = \
 	fpdebug.o \
 	geosteiner_config \
 	geosteiner_config.install \
-	libgeosteiner.la
+	libgeosteiner.la \
+	librs_geosteiner.la \
+	librs_geosteiner.a
 
 # Object file sets for each program/library...
 
@@ -366,6 +368,20 @@ ALL_SRC = $(PROGRAM_SRC) $(PROGRAM_AUX_SRC) $(LIB_SRC)
 
 LIB_OBJECTS = $(LIB_SRC:.c=.lo)
 
+LP_SOLVE_SRC = \
+	$(LP_SOLVE_DIR)/lpkit.c \
+	$(LP_SOLVE_DIR)/solve.c \
+	$(LP_SOLVE_DIR)/debug.c \
+	$(LP_SOLVE_DIR)/hash.c \
+	$(LP_SOLVE_DIR)/presolve.c \
+	$(LP_SOLVE_DIR)/lpbinio.c
+
+
+LP_SOLVE_OBJECTS = $(LP_SOLVE_SRC:.c=.lo)
+
+RS_API_SRC = rs_api.c
+RS_API_OBJECT = $(RS_API_SRC:.c=.lo)
+
 ALL_OBJECTS = \
 	$(LIB_OBJECTS) \
 	$(LIB_OBJECTS:.lo=.o) \
@@ -397,6 +413,10 @@ GEOLIB = $(MEMORY) -L$(LIB_PATH) -lgeosteiner $(LP_LIBS) $(GMP_LIBS) -lm
 
 all:	$(TARGETS)
 
+librs_geosteiner.la : $(RS_API_OBJECT) $(LIB_OBJECTS) $(LP_SOLVE_OBJECTS) $(LP_LIBS)
+	$(LIBTOOL) --mode=link $(CC) -static -o librs_geosteiner.la $(RS_API_OBJECT) $(LIB_OBJECTS) $(LP_SOLVE_OBJECTS) -rpath $(libdir) -lm
+	cp .libs/librs_geosteiner.a librs_geosteiner.a
+
 analyze_ckpt : $(ANALYZE_CKPT_OBJECTS) $(MEMORY) libgeosteiner.la
 	$(CC) $(CFLAGS) -o analyze_ckpt $(ANALYZE_CKPT_OBJECTS) $(GEOLIB)
 
@@ -426,6 +446,7 @@ efst : $(EFST_OBJECTS) $(MEMORY) libgeosteiner.la
 
 fst2graph : $(FST2GRAPH_OBJECTS) $(MEMORY) libgeosteiner.la
 	$(CC) $(CFLAGS) -o fst2graph $(FST2GRAPH_OBJECTS) $(GEOLIB)
+
 geosteiner.h : parmdefs.h errordefs.h functions.in docgen
 	./docgen -h <functions.in >geosteiner.h
 
@@ -604,7 +625,7 @@ clean :
 
 distclean : clean
 	-rm -f Makefile config.cache config.h config.log config.status \
-		stamp-config-h
+		stamp-config-s
 	-rm -rf autom4te.cache
 
 #

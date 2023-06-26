@@ -1,10 +1,12 @@
 /target
 /Cargo.lock
 
+# geosteiner
 *.o
 *.dep
 *.lo
 *.libs/
+
 analyze_ckpt
 bb
 demo1
@@ -30,3 +32,11 @@ rand_points
 rfst
 smt
 ufst
+config.log
+config.status
+configure
+configure~
+autom4te.cache
+
+librs_geosteiner.la
+librs_geosteiner.a

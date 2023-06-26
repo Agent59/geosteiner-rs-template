@@ -1,19 +1,14 @@
 use geosteiner_rs_api::{
-    rs_gst_open_geosteiner,
-    rs_gst_close_geosteiner,
-    //gst_esmt,
+    rs_safe_compute_esmt,
 };
 
 fn main() {
-    println!("test");
+    let terms: [f64; 8] = [0.0, 0.0,
+                        0.0, 1.0,
+                        1.0, 0.0,
+                        1.0, 1.0];
+    
+    let esmt = rs_safe_compute_esmt(4, &terms);
 
-    if rs_gst_open_geosteiner() == 0 {
-        println!("opened geosteiner");
-
-        let terms = [0, 0, 0, 1, 1, 0, 1, 1];
-
-        //unsafe { gst_esmt(4, terms, ); };
-        
-        rs_gst_close_geosteiner();
-    }
+    println!("{:?}", esmt.sps);
 }
