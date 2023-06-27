@@ -84,3 +84,15 @@ pub fn rs_safe_compute_esmt<const L: usize, const L2: usize>(nterms: i32, terms:
     let c_esmt = unsafe { rs_compute_esmt(nterms, &c_terms[0]) };
     ESMT::from_c_esmt(c_esmt)
 }
+
+/// Works the same as `rs_safe_compute_esmt` but takes a vector instead.
+pub fn rs_safe_compute_esmt_vec(terms: &Vec<Point>) -> ESMT {
+    let mut c_terms = Vec::new();
+    for p in terms {
+        c_terms.push(p.x);
+        c_terms.push(p.y);
+    }
+
+    let c_esmt = unsafe { rs_compute_esmt((c_terms.len() / 2) as i32, &c_terms[0]) };
+    ESMT::from_c_esmt(c_esmt)
+}
