@@ -1,0 +1,22 @@
+# Change geosteiner-rs-template to your projects (file)name
+FROM rust:latest as build
+
+RUN USER=root cargo new --bin geosteiner-rs-template
+WORKDIR /geosteiner-rs-template
+
+COPY ./Cargo.toml ./Cargo.toml
+COPY ./build.rs ./build.rs
+COPY ./src/ ./src/
+
+# build the C libraries (just like with --features rebuild_c which doesn't work in docker)
+RUN make -C ./src/geosteiner/ librs_geosteiner.la
+
+RUN cargo build --release
+RUN rm src/*.rs
+
+FROM rust:latest
+
+COPY --from=build /geosteiner-rs-template/target/release/geosteiner-rs-template ./geosteiner-rs-template
+COPY ./static/ ./static/
+
+CMD ["/geosteiner-rs-template"]
