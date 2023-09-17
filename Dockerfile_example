@@ -17,6 +17,5 @@ RUN rm src/*.rs
 FROM rust:latest
 
 COPY --from=build /geosteiner-rs-template/target/release/geosteiner-rs-template ./geosteiner-rs-template
-COPY ./static/ ./static/
 
 CMD ["/geosteiner-rs-template"]
