@@ -1,6 +1,10 @@
 # geosteiner-rs-template
 A template for working with the geosteiner C library in Rust
 
+**!Disclaimer!**  
+**This project is not made professionally. Use with caution.**  
+**Functionalities of the original geosteiner library might not work as expected.**
+
 ## Installation
 **This project does not run on ARM systems like the raspberry pi.**  
 
