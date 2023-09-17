@@ -801,7 +801,7 @@ triangle.lo : triangle.c
 
 dependency_files = $(sort $(ALL_SRC:.c=.dep))
 
-$(dependency_files) : Makefile geosteiner.h
+$(dependency_files) : geosteiner.h
 
 # Include all of the dependency files (unless we are cleaning).
 ifneq ($(MAKECMDGOALS),clean)
